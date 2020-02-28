@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.9.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+  <groupId>Springcloud</groupId>
+  <artifactId>pom</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Springcloud-pom</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <dependencies>
+   		 <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId> org.springframework.boot </groupId>
+		    <artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		 -->
+		
+		<dependency> 
+            <groupId>org.springframework.boot</groupId>  
+		    <artifactId>spring-boot-starter-thymeleaf</artifactId>  
+		</dependency>
+		
+		<!-- 
+		<dependency>
+	    	<groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.29</version>
+		</dependency> 
+		-->
+		
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.60</version>
+		</dependency>
+		
+  </dependencies>
+  <!-- 如果 dependencies 里的 dependency 自己没有声明 version 元素，那么 maven 就此处来找版本声明。 -->
+  <!-- 如果有，就会继承它；如果没有就会报错，告诉你没有版本信息 -->
+  <!-- 优先级：如果 dependencies 里的 dependency 已经声明了版本信息，就不会生效此处的版本信息了 -->
+  <!-- Spring Cloud -->
+	<dependencyManagement>
+		  <dependencies>
+		      <dependency>
+		          <groupId>org.springframework.cloud</groupId>
+		          <artifactId>spring-cloud-dependencies</artifactId>
+		          <version>Greenwich.SR3</version>
+		          <type>pom</type>
+		          <!--maven不支持多继承，使用import来依赖管理配置-->
+		          <scope>import</scope>
+		      </dependency>
+		  </dependencies>
+	</dependencyManagement>
+</project>
