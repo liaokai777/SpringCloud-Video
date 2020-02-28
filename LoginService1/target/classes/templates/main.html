@@ -1,0 +1,251 @@
+<html>
+
+	<head>
+		<title>主页</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/main/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main/main.css" />
+		<!--字体图标css-->
+		<link rel="stylesheet" href="css/main/all.min.css" />
+		<link rel="stylesheet" href="css/main/fontawesome.min.css" />
+		<!--顶部导航css-->
+		<link rel="stylesheet" href="css/nav/top_nav.css" />
+		<!--左侧导航css-->
+		<link rel="stylesheet" type="text/css" href="css/nav/left_nav.css" />
+		<!--聊天模块css-->
+		<link rel="stylesheet" type="text/css" href="css/talk/talk.css"/>
+		<!--预加载js-->
+		<script type="text/javascript" src="js/main/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="js/main/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/main/bootstrap.bundle.min.js"></script>
+		<!--字体图标js-->
+		<script type="text/javascript" src="js/main/all.min.js"></script>
+		<script type="text/javascript" src="js/main/fontawesome.min.js"></script>
+	</head>
+
+	<body>
+		<div class="main">
+			<!--头部导航-->
+			<div class="row" id="container_top">
+				<div class="row" id="main_nav">
+					<div class="col-2">
+						<ul>
+							<li>
+								<a href="javascript:void(0)" title="点播单" id="playList">
+									<span style="font-size: 1.5em; color: #4E555B;">
+						     <i class="fas fa-angle-right fa-1x" id="playListIco"></i>
+						             点播单
+					         </span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-7">
+						<ul>
+							<li>
+								<a href="" title="前页">
+									<span style="font-size: 1.5em; color:  #4E555B">
+						    <i class="fas fa-home fa-xs"></i>
+						           前页
+					    	</span>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" title="直播" id="liveTV">
+									<span style="font-size: 1.5em; color:  #4E555B">
+						    <i class="fas fa-list-ol fa-xs"></i>
+						           直播
+					    	</span>
+								</a>
+							</li>
+							<li>
+								<a href="" title="视频">
+									<span style="font-size: 1.5em; color:  #4E555B">
+						   	<i class="fas fa-video fa-xs"></i>
+						  	 视频
+					    	</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-3">
+						<ul>
+							<li>
+								<span style="font-size: 2em; color: green">
+						   			<i class="fas fa-user-graduate fa-xs"></i>
+					    		</span>
+								<span>0</span>
+								<span> 位</span>
+							</li>
+							<li>
+								<span style="font-size: 2em; color: green">
+						  		 	<i class="fas fa-street-view fa-xs"></i>
+					    		</span>
+								<span id="loginName" th:text="${loginName}">张三</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<!--左侧导航-->
+				<div class="col-2 " id="container_centre_left">
+					<div class="nav_left">
+						<div style="padding-top: 10px;">
+							<div class="item">语文</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">数学</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">英语</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">物理</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">化学</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">生物</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">生物</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+						<div>
+							<div class="item">生物</div>
+							<div>
+								<a title="一年级" href="">一年级</a>
+								<a title="二年级" href="">二年级</a>
+								<a title="三年级" href="">三年级</a>
+								<a title="四年级" href="">四年级</a>
+								<a title="五年级" href="">五年级</a>
+								<a title="六年级" href="">六年级</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--视频区-->
+				<div class="col-7" id="container_centre">
+					<!--视频容器-->
+					<div class="row" id="video-container" style="padding: 0px;margin: 0px;">
+						<!--视频 默认不展视-->
+						<div class="row" id="mainVideo" style="display: none;">
+						</div>
+						<!--视频内饰-->
+						<div class="row" id="unvideo-container">
+							<div><button class="startBtn" id="start_zb" type="submit" value="Submit">开始直播</button></div>
+						</div>
+					</div>
+					<!--视频下方工具与礼物区-->
+					<div class="row" id="video-tool">
+						<div class="col-2">
+							<div id="fileupload"></div>
+							<div><button class="toolBtn" type="submit" value="Submit">去考试</button></div>
+						</div>
+						<div class="col-2">
+							<div><button class="toolBtn" id="clear_li" type="submit" value="Submit">清屏</button></div>
+							<div><button class="toolBtn" id="fullScreen" type="submit" value="Submit">全屏</button></div>
+						</div>
+						<div class="col-4">
+							<div id="end_zb" style="display: none;"><button class="toolBtn" type="submit" value="Submit">结束直播</button></div>
+						</div>
+						<div class="col-4">
+
+						</div>
+					</div>
+				</div>
+				<!--右侧聊天区-->
+				<div class="col-3" id="container_centre_right">
+					<div class="talk">
+						<div class="row" id="display_talk">
+							<ul id="display_talk_ul">
+
+							</ul>
+						</div>
+
+						<div class="row" style="height: 50px;">
+							<div class="col-10">
+								<input type="text" style="max-width: 100%; height: 40px; width: 100%;" id="input_user">
+							</div>
+							<div class="col-2"><button class="sendBtn" id="sendmsg" type="submit" value="Submit">发送</button></div>
+						</div>
+					</div>
+				</div>
+
+				<!--直播列表区 默认不展示-->
+				<div class="col-10" id="container_liveList">
+
+				</div>
+
+			</div>
+		</div>
+		<!--加载模块js-->
+		<script type="text/javascript" src="js/main/main.js"></script>
+		<script type="text/javascript" src="js/websocket/live.js"></script>
+		<!--顶部导航js-->
+		<script type="text/javascript" src="js/nav/top_nav.js"></script>
+		<!--聊天模块-->
+		<script type="text/javascript" src="js/websocket/talk.js" ></script>
+		
+	</body>
+
+</html>

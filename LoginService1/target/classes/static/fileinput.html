@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>图片上传</title>
+	<link href="css/pictureUpload/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+	
+	<script src="js/pictureUpload/piexif.min.js" type="text/javascript"></script>
+	<script src="js/pictureUpload/sortable.min.js" type="text/javascript"></script>
+	<script src="js/pictureUpload/purify.min.js" type="text/javascript"></script>
+	<script src="js/pictureUpload/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/pictureUpload/fileinput.min.js"></script>
+	<script src="js/pictureUpload/theme.min.js"></script>
+	<script src="js/pictureUpload/zh.js"></script>
+	<script>
+		$(function(){
+        		$("#save").click(function(){
+        				$("#input-b9").fileinput("upload");
+        		});
+        		$("#input-b9").fileinput({
+        			uploadAsync: true, //默认异步上传
+        			 maxFileCount:10, 
+        			enctype:'multipart/form-data',
+			        showPreview: true,
+			        showUpload: false,
+			        elErrorContainer: '#kartik-file-errors',
+			        allowedFileExtensions: ["jpg", "png", "gif"],
+			        contentType: false,
+			        uploadUrl: 'http://127.0.0.1/fileUpload'
+			    });
+        		$('#input-b9').on('fileerror', function(event, data, msg) {
+                    console.log(data.id);
+                    console.log(data.index);
+                    console.log(data.file);
+                    console.log(data.reader);
+                    console.log(data.files);
+                    // get message
+                    alert(msg);
+        		});
+        	});
+	</script>
+</head>
+<body>
+	<span class="toolBtn" id="btn_file" data-toggle="modal" data-target="#exampleModal">交作业</span>
+	<!--文件上传模态框-->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-lg" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <div class="file-loading">
+			          <input id="input-b9" name="input-b9[]" multiple type="file" value="上传">
+			        </div>
+			        <div id="kartik-file-errors"></div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" title="Your custom upload logic">Save</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+</body>
+</html>
