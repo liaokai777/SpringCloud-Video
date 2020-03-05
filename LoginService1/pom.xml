@@ -129,6 +129,11 @@
 		    <artifactId>jjwt</artifactId>
 	    <version>0.7.0</version>
 		</dependency>
+		<!-- Session共享 -->
+		<dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
 	</dependencies>
 	
 	<build>

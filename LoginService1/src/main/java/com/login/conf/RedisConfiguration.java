@@ -1,9 +1,16 @@
 package com.login.conf;
 
+import java.time.Duration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
@@ -11,7 +18,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -26,7 +36,7 @@ public class RedisConfiguration extends CachingConfigurerSupport {
      * @return
      * springboot默认创建的bean是单例
      */
-    @Bean//注解在方法上,声明当前方法的返回值为一个Bean.(initMethod="aa",destroyMethod="bb")--> 指定  aa在Bean构造之后.bb方法销毁之前执行.
+    @Bean(name="RedisTemplate")//注解在方法上,声明当前方法的返回值为一个Bean.(initMethod="aa",destroyMethod="bb")--> 指定  aa在Bean构造之后.bb方法销毁之前执行.
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
 
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -55,62 +65,25 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 
         return template;
     }
-    
-    
     /**
-     * 对hash类型的数据操作
-     *
-     * @param redisTemplate
-     * @return
+     * 缓存管理器
      */
-    @Bean
-    public HashOperations<String, String, Object> hashOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForHash();
+    @Bean(name = "redisCacheManager")
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        //初始化一个RedisCacheWriter
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
+        //设置CacheManager的值序列化方式为json序列化
+        RedisSerializer<Object> jsonSerializer = new GenericJackson2JsonRedisSerializer();
+        RedisSerializationContext.SerializationPair<Object> pair = RedisSerializationContext.SerializationPair
+                                                    .fromSerializer(jsonSerializer);
+        RedisCacheConfiguration defaultCacheConfig=RedisCacheConfiguration.defaultCacheConfig()
+                                                    .serializeValuesWith(pair);
+        //设置默认超过期时间是30秒
+        defaultCacheConfig.entryTtl(Duration.ofSeconds(30));
+        //初始化RedisCacheManager
+        return new RedisCacheManager(redisCacheWriter, defaultCacheConfig);
     }
-
-    /**
-     * 对redis字符串类型数据操作
-     *
-     * @param redisTemplate
-     * @return
-     */
-    @Bean
-    public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForValue();
-    }
-
-    /**
-     * 对链表类型的数据操作
-     *
-     * @param redisTemplate
-     * @return
-     */
-    @Bean
-    public ListOperations<String, Object> listOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForList();
-    }
-
-    /**
-     * 对无序集合类型的数据操作
-     *
-     * @param redisTemplate
-     * @return
-     */
-    @Bean
-    public SetOperations<String, Object> setOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForSet();
-    }
-
-    /**
-     * 对有序集合类型的数据操作
-     *
-     * @param redisTemplate
-     * @return
-     */
-    @Bean
-    public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForZSet();
-    }
+  
 
 
 }

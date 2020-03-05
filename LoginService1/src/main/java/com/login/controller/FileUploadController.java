@@ -32,7 +32,7 @@ public class FileUploadController {
             return "false";
         }
         User user = (User)session.getAttribute("user");
-        String loginName = user.getLoginName();
+        String loginName = user.getLoginname();
         Channel channel = MapUtil.getchannlMap().get(loginName);
         if(loginName!=null&&channel==null) {
         	NettyUtil nettyUtil = new NettyUtil();

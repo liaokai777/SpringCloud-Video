@@ -1,5 +1,6 @@
 package com.login;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -18,6 +19,7 @@ import com.spring4all.swagger.EnableSwagger2Doc;
 @EnableFeignClients(basePackages = "com.login.feign")
 @EnableHystrix 
 @EnableHystrixDashboard
+@MapperScan(basePackages = "com.login.mapper")
 public class LoginServiceApplication {
 
 	public static void main(String[] args) {
